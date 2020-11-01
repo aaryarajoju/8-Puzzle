@@ -32,8 +32,6 @@ func getUniqueAndRandomNum(a [3][3]int) int {
 	rand.Seed(time.Now().UnixNano())
 	x := rand.Intn(9) + 1
 
-	// fmt.Println(x)
-
 	if !isAlreadyPresent(x, a) {
 		return x
 	}
