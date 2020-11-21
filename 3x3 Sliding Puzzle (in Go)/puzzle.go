@@ -1,5 +1,5 @@
 package main
-
+	
 import (
 	"fmt"
 	"math/rand"
@@ -70,8 +70,8 @@ func getNum(board [3][3]int, r int, c int) string {
 	if board[r][c] == 9 {
 		return " "
 	}
-	return strconv.Itoa(board[r][c])
 
+	return strconv.Itoa(board[r][c])
 }
 
 func isBoardFinished(board [3][3]int) bool {
@@ -80,6 +80,6 @@ func isBoardFinished(board [3][3]int) bool {
 		board[2][0] == 7 && board[2][1] == 8 && board[2][2] == 9 {
 		return true
 	}
-	return false
 
+	return false
 }
