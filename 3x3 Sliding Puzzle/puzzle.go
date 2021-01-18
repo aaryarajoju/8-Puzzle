@@ -14,13 +14,14 @@ var totalTimeTaken time.Duration
 
 func main() {
 
-	startTime := time.Now()
+	init:
 
 	puzzle := [3][3]int{}
 	puzzle = initBoard(puzzle)
 
-	//boardTimeTaken := time.Since(startTime)
-	//fmt.Println("Time taken to generate the board:", boardTimeTaken)
+	if !isBoardSolvable(puzzle){
+		goto init
+	}
 
 	fmt.Print("\nRules: \n",
 		"\t`U` or `u`  for UP\n",
@@ -30,7 +31,9 @@ func main() {
 
 	originalBoard := puzzle
 
-start:
+	startTime := time.Now()
+
+	start:
 	fmt.Print("\n\n")
 	printBoard(puzzle)
 
@@ -115,6 +118,7 @@ start:
 
 	totalTimeTaken = time.Since(startTime)
 	boardFinished(puzzle, originalBoard)
+	fmt.Print("\n\n")
 }
 
 func isAlreadyPresent(board [3][3]int, x int) bool {
@@ -209,4 +213,33 @@ func boardFinished(board [3][3]int, originalBoard [3][3]int) {
 	printBoard(originalBoard)
 	fmt.Println("\nThe final board is: ")
 	printBoard(board)
+}
+
+func isBoardSolvable(board [3][3]int) bool {
+
+	var arr [8]int
+	var numOfInversions int
+
+	for a, i := 0, 0; i < 3; i++ {
+		for j := 0; j < 3; j++ {
+			if board[i][j] != 9 {
+				arr[a] = board[i][j]
+				a++
+			}
+		}
+	}
+
+	for first := 0; first < len(arr); first++ {
+		for second := first + 1; second < len(arr); second++ {
+			if arr[second] < arr[first] {
+				numOfInversions++
+			}
+		}
+	}
+
+	if numOfInversions % 2 == 0 {
+		return true
+	}
+
+	return false
 }
