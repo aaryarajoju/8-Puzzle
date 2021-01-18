@@ -14,12 +14,12 @@ var totalTimeTaken time.Duration
 
 func main() {
 
-	init:
+init:
 
 	puzzle := [3][3]int{}
 	puzzle = initBoard(puzzle)
 
-	if !isBoardSolvable(puzzle){
+	if !isBoardSolvable(puzzle) {
 		goto init
 	}
 
@@ -33,7 +33,7 @@ func main() {
 
 	startTime := time.Now()
 
-	start:
+start:
 	fmt.Print("\n\n")
 	printBoard(puzzle)
 
@@ -237,7 +237,7 @@ func isBoardSolvable(board [3][3]int) bool {
 		}
 	}
 
-	if numOfInversions % 2 == 0 {
+	if numOfInversions%2 == 0 {
 		return true
 	}
 
