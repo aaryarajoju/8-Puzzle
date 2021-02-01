@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"math/rand"
 	"os"
+	"os/exec"
 	"strconv"
 	"time"
 )
@@ -45,6 +46,10 @@ start:
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	cmd := exec.Command("cmd", "/c", "cls")
+	cmd.Stdout = os.Stdout
+	_ = cmd.Run()
 
 	if char != 76 && char != 85 && char != 68 && char != 82 &&
 		char != 108 && char != 117 && char != 100 && char != 114 {
@@ -146,9 +151,13 @@ func getUniqueAndRandomNum(board [3][3]int) int {
 
 func printBoard(board [3][3]int) {
 
+	fmt.Println("-------------------")
 	fmt.Println("| ", getNum(board, 0, 0), " | ", getNum(board, 0, 1), " | ", getNum(board, 0, 2), " |")
+	fmt.Println("| --- | --- | --- |")
 	fmt.Println("| ", getNum(board, 1, 0), " | ", getNum(board, 1, 1), " | ", getNum(board, 1, 2), " |")
+	fmt.Println("| --- | --- | --- |")
 	fmt.Println("| ", getNum(board, 2, 0), " | ", getNum(board, 2, 1), " | ", getNum(board, 2, 2), " |")
+	fmt.Println("-------------------")
 }
 
 func initBoard(board [3][3]int) [3][3]int {
